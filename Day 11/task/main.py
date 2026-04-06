@@ -1,4 +1,5 @@
 import random
+import art
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 user_cards = []
 computer_cards = []
@@ -38,6 +39,7 @@ def compare():
 
 play_again = True
 while play_again:
+    print(art.logo)
     user_cards.clear()
     user_cards.append(deal_card())
     user_cards.append(deal_card())
@@ -45,12 +47,13 @@ while play_again:
     computer_cards.append(deal_card())
     computer_cards.append(deal_card())
 
+    computer_score = calculate_score(computer_cards)
+
     new_card = True
     game_end = False
 
     while new_card and not game_end:
         user_score = calculate_score(user_cards)
-        computer_score = calculate_score(computer_cards)
         print(f"Your cards: {user_cards}, current score: {user_score}.\n Computer's first card: {computer_cards[0]}.")
         if user_score == 0 or computer_score == 0 or user_score > 21:
             new_card = False
