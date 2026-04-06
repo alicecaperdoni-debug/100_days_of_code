@@ -43,18 +43,18 @@ def compare():
             print(f"You lose!\nYour final hand: {user_cards}, your final score: {user_score}.\nComputer final hand:"
                   f"{computer_cards}, computer final score: {computer_score}.")
 
-
-
-user_cards.append(deal_card())
-user_cards.append(deal_card())
-computer_cards.append(deal_card())
-computer_cards.append(deal_card())
-
-new_card = True
-game_end = False
 play_again = True
-
 while play_again:
+    user_cards.clear()
+    user_cards.append(deal_card())
+    user_cards.append(deal_card())
+    computer_cards.clear()
+    computer_cards.append(deal_card())
+    computer_cards.append(deal_card())
+
+    new_card = True
+    game_end = False
+
     while new_card and not game_end:
         user_score = calculate_score(user_cards)
         computer_score = calculate_score(computer_cards)
