@@ -1,12 +1,12 @@
 import random
 import art
-cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 user_cards = []
 computer_cards = []
 user_score = 0
 computer_score = 0
 
 def deal_card():
+    cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
     random_card = random.choice(cards)
     return random_card
 
@@ -16,9 +16,8 @@ def calculate_score(card_list):
     elif sum(card_list) > 21 and 11 in card_list:
         card_list.remove(11)
         card_list.append(1)
-        return sum(card_list)
-    else:
-        return sum(card_list)
+
+    return sum(card_list)
 
 def compare():
     result = ""
@@ -28,8 +27,8 @@ def compare():
         result = "win"
     elif user_score == computer_score:
         result = "draw"
-    else:
-        print(f"ERROR, compare result, user {user_score}, cmp {computer_score}")
+    # else:
+    #     print(f"ERROR, compare result, user {user_score}, cmp {computer_score}")
 
     print(
         f"You {result}!\n"
@@ -41,31 +40,29 @@ play_again = True
 while play_again:
     print(art.logo)
     user_cards.clear()
-    user_cards.append(deal_card())
-    user_cards.append(deal_card())
     computer_cards.clear()
-    computer_cards.append(deal_card())
-    computer_cards.append(deal_card())
+
+    for _ in range (2):
+        user_cards.append(deal_card())
+        computer_cards.append(deal_card())
 
     computer_score = calculate_score(computer_cards)
 
-    new_card = True
     game_end = False
 
-    while new_card and not game_end:
+    while not game_end:
         user_score = calculate_score(user_cards)
         print(f"Your cards: {user_cards}, current score: {user_score}.\n Computer's first card: {computer_cards[0]}.")
         if user_score == 0 or computer_score == 0 or user_score > 21:
-            new_card = False
             game_end = True
         else:
             draw_again = input("Do you want to draw another card? \"y\" or \"n\":")
             if draw_again == "y":
                 user_cards.append(deal_card())
             elif draw_again == "n":
-                new_card = False
+                game_end = True
 
-    while computer_score < 17 and not game_end:
+    while computer_score < 17 and computer_score != 0 and not game_end:
         computer_cards.append(deal_card())
         computer_score = calculate_score(computer_cards)
         if computer_score == 0:
