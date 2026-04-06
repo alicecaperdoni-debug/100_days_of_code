@@ -52,45 +52,47 @@ computer_cards.append(deal_card())
 
 new_card = True
 game_end = False
+play_again = True
 
-while new_card and not game_end:
-    user_score = calculate_score(user_cards)
-    computer_score = calculate_score(computer_cards)
-    print(f"Your cards: {user_cards}, current score: {user_score}.\n Computer's first card: {computer_cards[0]}.")
-    if user_score == 0:
-        new_card = False
-        game_end = True
-        print(f"You win!\nYour final hand: {user_cards}, your final score: {user_score}.\nComputer final hand:"
-              f"{computer_cards}, computer final score: {computer_score}.")
-    elif computer_score == 0 or user_score > 21:
-        new_card = False
-        game_end = True
-        print(f"You lose!\nYour final hand: {user_cards}, your final score: {user_score}.\nComputer final hand:"
-              f"{computer_cards}, computer final score: {computer_score}.")
-    else:
-        draw_again = input("Do you want to draw another card? \"y\" or \"n\":")
-        if draw_again == "y":
-            user_cards.append(deal_card())
-        elif draw_again == "n":
-            new_card = False
-
-comp_score_ok = True
-while comp_score_ok and not game_end:
-    if computer_score < 17:
-        computer_cards.append(deal_card())
+while play_again:
+    while new_card and not game_end:
+        user_score = calculate_score(user_cards)
         computer_score = calculate_score(computer_cards)
-        if computer_score > 21:
-            comp_score_ok = False
+        print(f"Your cards: {user_cards}, current score: {user_score}.\n Computer's first card: {computer_cards[0]}.")
+        if user_score == 0:
+            new_card = False
+            game_end = True
             print(f"You win!\nYour final hand: {user_cards}, your final score: {user_score}.\nComputer final hand:"
-              f"{computer_cards}, computer final score: {computer_score}.")
-    else:
-        comp_score_ok = False
+                  f"{computer_cards}, computer final score: {computer_score}.")
+        elif computer_score == 0 or user_score > 21:
+            new_card = False
+            game_end = True
+            print(f"You lose!\nYour final hand: {user_cards}, your final score: {user_score}.\nComputer final hand:"
+                  f"{computer_cards}, computer final score: {computer_score}.")
+        else:
+            draw_again = input("Do you want to draw another card? \"y\" or \"n\":")
+            if draw_again == "y":
+                user_cards.append(deal_card())
+            elif draw_again == "n":
+                new_card = False
 
-if not game_end:
-    compare()
+    comp_score_ok = True
+    while comp_score_ok and not game_end:
+        if computer_score < 17:
+            computer_cards.append(deal_card())
+            computer_score = calculate_score(computer_cards)
+            if computer_score > 21:
+                comp_score_ok = False
+                print(f"You win!\nYour final hand: {user_cards}, your final score: {user_score}.\nComputer final hand:"
+                  f"{computer_cards}, computer final score: {computer_score}.")
+        else:
+            comp_score_ok = False
 
+    if not game_end:
+        compare()
 
-# choice = input("Do you want to play again? Type \"y\" or \"n\".")
-#
-# if choice == "y":
+    choice = input("Do you want to play again? Type \"y\" or \"n\".")
+
+    if choice == "n":
+        play_again = False
 
