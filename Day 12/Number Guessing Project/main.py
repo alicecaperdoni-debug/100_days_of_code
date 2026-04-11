@@ -17,15 +17,15 @@ game_continue = True
 while game_continue and attempts > 0:
     print(f"You have {attempts} attempts remaining to guess the number.")
     user_guess = int(input("Make a guess: "))
-    if user_guess == COMPUTER_CHOICE:
-        print(f"You got it! The answer was {COMPUTER_CHOICE}")
-        game_continue = False
-    elif user_guess > COMPUTER_CHOICE:
+    attempts -= 1
+    if user_guess > COMPUTER_CHOICE:
         print("Too high!")
     elif user_guess < COMPUTER_CHOICE:
         print("Too low!")
-    attempts -= 1
-    if attempts > 0:
+    else:
+        print(f"You got it! The answer was {COMPUTER_CHOICE}")
+        game_continue = False
+    if attempts > 0 and user_guess != COMPUTER_CHOICE:
         print("Guess again.")
 
 if attempts == 0:
