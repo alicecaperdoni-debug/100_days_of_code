@@ -7,4 +7,7 @@ def increase_enemies():
 
 
 increase_enemies()
+# It prints "2" because inside the function
+
 print(f"enemies outside function: {enemies}")
+# It prints "1" because outside the function
