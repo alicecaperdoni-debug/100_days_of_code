@@ -16,7 +16,10 @@ difficulty = input("Choose a difficulty. Type \"easy\" or \"hard\":\n").lower()
 
 if difficulty == "easy":
     attempts = 10
-    for i in range(11): # fermare il loop se la risposta è stata trovata
-        print(f"You have {attempts} attempts remaining to guess the number.")
-        make_guess()
-        attempts -= 1
+elif difficulty == "hard":
+    attempts = 5
+
+for i in range(attempts): # fermare il loop se la risposta è stata trovata
+    print(f"You have {attempts} attempts remaining to guess the number.")
+    make_guess()
+    attempts -= 1
