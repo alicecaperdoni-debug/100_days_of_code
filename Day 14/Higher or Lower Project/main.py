@@ -17,13 +17,13 @@ while game_continue:
 
       answer = input("Who has more followers? Type \"A\" or \"B\".").lower()
 
+      print(art.logo)
       if ((answer == "a" and profile_a['follower_count'] > profile_b['follower_count']) or
               (answer == "b" and profile_b['follower_count'] > profile_a['follower_count'])):
             score += 1
-            print(art.logo)
             print(f"You're right! Current score: {score}")
       else:
-            print(f"You're wrong! Final score: {score}")
+            print(f"Sorry, that's wrong! Final score: {score}")
             game_continue = False
 
       profile_a = profile_b
